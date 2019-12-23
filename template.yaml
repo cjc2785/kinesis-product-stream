@@ -3,6 +3,8 @@ Transform: AWS::Serverless-2016-10-31
 Parameters:
   ApiUrl:
     Type: String
+  StreamName:
+    Type: String
 Globals:
   Function:
     Runtime: nodejs12.x
@@ -13,6 +15,9 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: index.AddProductsToKinesis
+      Environment:
+        Variables:
+          STREAM_NAME: !Ref StreamName
   AddProductsToDb:
     Type: AWS::Serverless::Function
     Properties:

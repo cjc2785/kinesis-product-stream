@@ -38,7 +38,8 @@ module.exports = async event => {
                 key: object.key,
                 product
             }),
-            PartitionKey: 0
+            PartitionKey: 0,
+            StreamName: process.env.STREAM_NAME
         })
     }
 }
