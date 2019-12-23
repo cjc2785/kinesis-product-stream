@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Parameters:
+  ApiUrl:
+    Type: String
+Globals:
+  Function:
+    Runtime: nodejs12.x
+    CodeUri: .
+    MemorySize: 512
+Resources:
+  AddProductsToKinesis:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.AddProductsToKinesis
+  AddProductsToDb:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.AddProductsToDb
+      Environment:
+        Variables:
+          API_URL: !Ref ApiUrl
+
+  
